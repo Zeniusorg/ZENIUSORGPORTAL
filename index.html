@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Zenius Organization - Form</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div class="container">
+    <img src="https://via.placeholder.com/150x50?text=ZENIUS+LOGO" alt="Zenius Logo" />
+    <h1>Zenius Organization</h1>
+    <form id="zeniusForm">
+      <input type="text" name="customerName" placeholder="Customer Name" required />
+      <input type="tel" name="mobileNumber" placeholder="Mobile Number" required />
+      <input type="text" name="panNumber" placeholder="PAN Number" required />
+      <input type="text" name="city" placeholder="City" required />
+      <input type="text" name="executiveName" placeholder="Executive Name" required />
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("zeniusForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const form = e.target;
+      const data = new FormData(form);
+      fetch("https://script.google.com/macros/s/AKfycby4U8ylaxcDCs1klMLRWXkjkTYlN1yNlcQURzzNtN_B-X7O-XCJJvvXRrJHYUlnn569Qw/exec", {
+        method: "POST",
+        body: data
+      })
+      .then(response => {
+        if (response.ok) {
+          window.location.href = "banks.html";
+        } else {
+          alert("Submission failed");
+        }
+      })
+      .catch(() => alert("Network error"));
+    });
+  </script>
+</body>
+</html>
